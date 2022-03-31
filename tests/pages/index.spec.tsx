@@ -12,7 +12,7 @@ describe('Home page', () => {
     cleanup();
   });
 
-  test('medaumasenha render', () => {
-    expect(screen.getByText('medaumasenha')).toBeInTheDocument();
+  test('Header render', () => {
+    expect(screen.getByTestId('header')).toBeInTheDocument();
   });
 });
