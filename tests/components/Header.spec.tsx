@@ -1,18 +1,18 @@
 import React from 'react';
 import { cleanup, render, screen } from '@testing-library/react';
-import Home from '../../src/pages';
+import Header from '../../src/components/Header';
 import '@testing-library/jest-dom/extend-expect';
 
-describe('Home page', () => {
+describe('Header component', () => {
   beforeEach(() => {
-    render(<Home />);
+    render(<Header />);
   });
 
   afterEach(() => {
     cleanup();
   });
 
-  test('Header render', () => {
-    expect(screen.getByTestId('header')).toBeInTheDocument();
+  test('Logo render', () => {
+    expect(screen.getByAltText('Logo medaumasenha')).toBeInTheDocument();
   });
 });
