@@ -52,7 +52,9 @@ export default function Home() {
   };
 
   const copyPasswordGeneratedToClipboard = (): void => {
-    navigator.clipboard.writeText(generatedPassword);
+    if (generatedPassword) {
+      navigator.clipboard.writeText(generatedPassword);
+    }
   };
 
   return (
