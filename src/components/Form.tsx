@@ -15,6 +15,10 @@ import {
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 
+interface IFormValues {
+  type: string
+  quantity: number | null
+}
 interface IFormProps {
   // eslint-disable-next-line no-unused-vars
   onSubmit: (type: string, quantity: number | null) => void
@@ -25,12 +29,31 @@ const passwordGeneratorSchema = Yup.object().shape({
   quantity: Yup
     .number()
     .nullable()
-    .min(6, 'Valor mínimo: 6 caracteres')
-    .max(36, 'Valor máximo: 36 caracteres')
+    .when('type', {
+      is: 'alpha',
+      then: Yup
+        .number()
+        .nullable()
+        .min(6, 'Valor mínimo: 6 caracteres')
+        .max(36, 'Valor máximo: 36 caracteres'),
+    })
+    .when('type', {
+      is: 'numeric',
+      then: Yup
+        .number()
+        .nullable()
+        .min(6, 'Valor mínimo: 6 caracteres')
+        .max(16, 'Valor máximo: 16 caracteres'),
+    })
     .optional(),
 });
 
 export default function Form({ onSubmit }: IFormProps) {
+  const helperTexts = {
+    alpha: 'Valor padrão: 36 caracteres',
+    numeric: 'Valor padrão: 16 caracteres',
+  };
+
   return (
     <Box as="form">
       <Formik
@@ -38,12 +61,17 @@ export default function Form({ onSubmit }: IFormProps) {
           type: '',
           quantity: null,
         }}
-        onSubmit={(values) => {
+        onSubmit={(values: IFormValues) => {
           onSubmit(values.type, values.quantity);
         }}
         validationSchema={passwordGeneratorSchema}
       >
-        {({ errors, touched, submitForm }) => (
+        {({
+          errors,
+          touched,
+          values,
+          submitForm,
+        }) => (
           <VStack spacing="8">
             <Stack direction={['column', 'row']} spacing="4">
               <Field name="type" touched={touched.type}>
@@ -77,7 +105,7 @@ export default function Form({ onSubmit }: IFormProps) {
                         <FormHelperText
                           fontSize={[10, 12]}
                         >
-                          Valor padrão: 36 caracteres
+                          {values.type && helperTexts[values.type]}
                         </FormHelperText>
 
                       )}
