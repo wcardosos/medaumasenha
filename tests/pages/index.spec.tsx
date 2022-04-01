@@ -65,5 +65,6 @@ describe('Home page', () => {
     await user.click(screen.getByTestId('copy-to-clipboard-button'));
 
     expect(clipboardWriteTextSpy).toHaveBeenCalledWith('numeric password generated :0');
+    expect(await screen.findByText('A senha gerada foi copiada para a área de transferência!')).toBeInTheDocument();
   });
 });
