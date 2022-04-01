@@ -55,7 +55,7 @@ export default function Form({ onSubmit }: IFormProps) {
   };
 
   return (
-    <Box as="form">
+    <Box>
       <Formik
         initialValues={{
           type: '',
