@@ -51,4 +51,19 @@ describe('Home page', () => {
     expect(screen.getByText('numeric password generated :0')).toBeInTheDocument();
     expect(screen.getByText('Clique no botão para copiar e cole onde desejar')).toBeInTheDocument();
   });
+
+  it('Should copy generated password to clipboard', async() => {
+    const user = userEvent.setup();
+    const clipboardWriteTextSpy = jest.fn();
+
+    navigator.clipboard.writeText = clipboardWriteTextSpy;
+
+    await user.selectOptions(screen.getByLabelText('Tipo de senha:'), 'numeric');
+
+    await user.click(screen.getByTestId('generate-button'));
+
+    await user.click(screen.getByTestId('copy-to-clipboard-button'));
+
+    expect(clipboardWriteTextSpy).toHaveBeenCalledWith('numeric password generated :0');
+  });
 });

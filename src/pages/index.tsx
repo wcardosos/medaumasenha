@@ -51,6 +51,10 @@ export default function Home() {
     openGeneratedPasswordSection();
   };
 
+  const copyPasswordGeneratedToClipboard = (): void => {
+    navigator.clipboard.writeText(generatedPassword);
+  };
+
   return (
     <Page>
       <Header />
@@ -73,9 +77,11 @@ export default function Home() {
                 <Text>{generatedPassword}</Text>
                 <Spacer />
                 <Button
+                  data-testid="copy-to-clipboard-button"
                   color="gray.500"
                   variant="outline"
                   border="none"
+                  onClick={copyPasswordGeneratedToClipboard}
                   _hover={{
                     bgColor: null,
                   }}
