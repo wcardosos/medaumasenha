@@ -71,9 +71,9 @@ export default function Home() {
         <title>medaumasenha - Gerador de senhas</title>
       </Head>
       <Header />
-      <Center fontSize={[12, 16]}>
+      <Center>
         <VStack w={['100%', 560]} py="16" spacing="8">
-          <Heading color="blue.600" fontSize={[16, 32]}>Gere sua nova senha agora</Heading>
+          <Heading color="blue.600" fontSize="2xl">Gere sua nova senha agora</Heading>
           <Text>Gerador de senha moderno e seguro</Text>
 
           <Form onSubmit={generatePassword} />
