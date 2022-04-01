@@ -8,6 +8,7 @@ import {
   Spacer,
   Text,
   VStack,
+  useToast,
 } from '@chakra-ui/react';
 import { RiFileCopyLine } from 'react-icons/ri';
 import { PasswordGenerator } from '../lib/PasswordGenerator';
@@ -22,6 +23,8 @@ export default function Home() {
     setGeneratedPasswordSectionIsOpen,
   ] = useState<boolean>(false);
   const [generatedPassword, setGeneratedPassword] = useState<string>('');
+
+  const toast = useToast();
 
   const openGeneratedPasswordSection = ():void => {
     if (!generatedPasswordSectionIsOpen) {
@@ -51,6 +54,16 @@ export default function Home() {
     openGeneratedPasswordSection();
   };
 
+  const copyPasswordGeneratedToClipboard = (): void => {
+    if (generatedPassword) {
+      navigator.clipboard.writeText(generatedPassword);
+      toast({
+        description: 'A senha gerada foi copiada para a área de transferência!',
+        duration: 5000,
+      });
+    }
+  };
+
   return (
     <Page>
       <Header />
@@ -73,9 +86,11 @@ export default function Home() {
                 <Text>{generatedPassword}</Text>
                 <Spacer />
                 <Button
+                  data-testid="copy-to-clipboard-button"
                   color="gray.500"
                   variant="outline"
                   border="none"
+                  onClick={copyPasswordGeneratedToClipboard}
                   _hover={{
                     bgColor: null,
                   }}
