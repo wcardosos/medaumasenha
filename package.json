@@ -1,12 +1,14 @@
 {
-  "name": "nextjs-boilerplate",
+  "name": "medaumasenha",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.8.7",
