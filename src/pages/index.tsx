@@ -14,6 +14,7 @@ import { PasswordGenerator } from '../lib/PasswordGenerator';
 import Header from '../components/Header';
 import Page from '../components/Page';
 import Form from '../components/Form';
+import Footer from '../components/Footer';
 
 export default function Home() {
   const [
@@ -93,6 +94,7 @@ export default function Home() {
           ) }
         </VStack>
       </Center>
+      <Footer />
     </Page>
   );
 }
