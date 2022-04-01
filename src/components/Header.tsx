@@ -14,7 +14,7 @@ export default function Header() {
       <Image
         src="/brand/logo.png"
         alt="Logo medaumasenha"
-        maxH={['8', '16']}
+        maxH={['12', '16']}
       />
     </Box>
   );
