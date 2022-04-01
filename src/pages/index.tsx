@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Head from 'next/head';
 import {
   Box,
   Button,
@@ -66,6 +67,9 @@ export default function Home() {
 
   return (
     <Page>
+      <Head>
+        <title>medaumasenha - Gerador de senhas</title>
+      </Head>
       <Header />
       <Center fontSize={[12, 16]}>
         <VStack w={['100%', 560]} py="16" spacing="8">
