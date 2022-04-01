@@ -22,7 +22,7 @@ describe('Lib: password generator', () => {
       expect(result).toBe(expectedResult);
     });
 
-    it('Should return the entire generated password when characters quantity is null', () => {
+    it('Should return the entire generated password when characters quantity is setted', () => {
       const expectedResult = '676885cc';
 
       const result = PasswordGenerator.generateAlphanumeric(8);
