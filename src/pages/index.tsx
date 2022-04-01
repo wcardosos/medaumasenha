@@ -38,6 +38,7 @@ export default function Home() {
     };
     const passwordGenerators = {
       [acceptableTypes.ALPHA]: PasswordGenerator.generateAlphanumeric,
+      [acceptableTypes.NUMERIC]: PasswordGenerator.generateNumeric,
     };
 
     const generator = passwordGenerators[passwordType];
