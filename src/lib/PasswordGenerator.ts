@@ -1,12 +1,24 @@
 import { v4 as uuidGenerator } from 'uuid';
 
+interface ICharactersQuantityBoundaries {
+  min: number
+  max: number
+}
 export class PasswordGenerator {
+  private static checkCharactersQuantity(
+    charactersQuantity: number | null,
+    { max, min }: ICharactersQuantityBoundaries,
+  ): void {
+    if (charactersQuantity && (charactersQuantity < min || charactersQuantity > max)) {
+      throw Error('Characters quantity invalid');
+    }
+  }
+
   public static generateAlphanumeric(charactersQuantity: number | null): string {
     const DEFAULT_CHARACTERS_QUANTITY = 36;
 
-    if (charactersQuantity !== null && (charactersQuantity < 6 || charactersQuantity > 36)) {
-      throw Error('Characters quantity invalid');
-    }
+    PasswordGenerator
+      .checkCharactersQuantity(charactersQuantity, { max: DEFAULT_CHARACTERS_QUANTITY, min: 6 });
 
     const generatedPassword = uuidGenerator();
 
@@ -16,9 +28,8 @@ export class PasswordGenerator {
   public static generateNumeric(charactersQuantity: number | null): string {
     const DEFAULT_CHARACTERS_QUANTITY = 16;
 
-    if (charactersQuantity !== null && (charactersQuantity < 6 || charactersQuantity > 16)) {
-      throw Error('Characters quantity invalid');
-    }
+    PasswordGenerator
+      .checkCharactersQuantity(charactersQuantity, { max: DEFAULT_CHARACTERS_QUANTITY, min: 6 });
 
     const generatedPassword = Math.random().toString().replace('0.', '');
 
