@@ -1,0 +1,8 @@
+.eslintignore
+.eslintrc.json
+jest.config.js
+
+docs/
+
+coverage/
+tests/
